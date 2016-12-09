@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import <linkedin-sdk/LISDK.h>
+@import Firebase;
 
 @interface AppDelegate ()
 
@@ -17,6 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [FIRApp configure];
+    return YES;
+}
+
+//Enable the LinkedIn App to give control back your application in situations in situations where you are brought outside of the context of your application (e.g. deeplinking)
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if ([LISDKCallbackHandler shouldHandleUrl:url]) {
+        return [LISDKCallbackHandler application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
+    }
     return YES;
 }
 
