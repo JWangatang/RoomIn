@@ -13,7 +13,6 @@
 		AB4105D11DF6B02200BF1B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB4105D01DF6B02200BF1B6A /* Assets.xcassets */; };
 		AB4105D41DF6B02200BF1B6A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB4105D21DF6B02200BF1B6A /* LaunchScreen.storyboard */; };
 		AB4105DF1DF6B02200BF1B6A /* RoomInTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB4105DE1DF6B02200BF1B6A /* RoomInTests.m */; };
-		ABA710C41DF7376000FA1F89 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710C31DF7376000FA1F89 /* LoginViewController.m */; };
 		ABA710C81DF737B500FA1F89 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710C71DF737B500FA1F89 /* ResultsViewController.m */; };
 		ABA710CB1DF737E100FA1F89 /* FiltersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710CA1DF737E100FA1F89 /* FiltersViewController.m */; };
 		ABA710D21DF7392D00FA1F89 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710D11DF7392D00FA1F89 /* ProfileViewController.m */; };
@@ -29,6 +28,7 @@
 		ABA710F31DF7590A00FA1F89 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710F21DF7590A00FA1F89 /* MessageCell.m */; };
 		ABA710F61DF75B3E00FA1F89 /* ChatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ABA710F51DF75B3E00FA1F89 /* ChatCell.m */; };
 		ABAACFA51DFA17EF00F9F9BB /* CreateProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAACFA41DFA17EF00F9F9BB /* CreateProfileViewController.m */; };
+		ABAACFA81DFA4D4200F9F9BB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ABAACFA71DFA4D4200F9F9BB /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,6 @@
 		AB4105DA1DF6B02200BF1B6A /* RoomInTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoomInTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB4105DE1DF6B02200BF1B6A /* RoomInTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoomInTests.m; sourceTree = "<group>"; };
 		AB4105E01DF6B02200BF1B6A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ABA710C21DF7376000FA1F89 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = ../LoginViewController.h; sourceTree = "<group>"; };
-		ABA710C31DF7376000FA1F89 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = ../LoginViewController.m; sourceTree = "<group>"; };
 		ABA710C61DF737B500FA1F89 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		ABA710C71DF737B500FA1F89 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		ABA710C91DF737E100FA1F89 /* FiltersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FiltersViewController.h; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		ABA710F51DF75B3E00FA1F89 /* ChatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatCell.m; sourceTree = "<group>"; };
 		ABAACFA31DFA17EF00F9F9BB /* CreateProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateProfileViewController.h; sourceTree = "<group>"; };
 		ABAACFA41DFA17EF00F9F9BB /* CreateProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateProfileViewController.m; sourceTree = "<group>"; };
+		ABAACFA61DFA4D4200F9F9BB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		ABAACFA71DFA4D4200F9F9BB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +164,8 @@
 				ABA710CE1DF738B300FA1F89 /* Messages */,
 				ABA710CD1DF738A900FA1F89 /* Search */,
 				ABA710CC1DF7388D00FA1F89 /* Profile */,
-				ABA710C21DF7376000FA1F89 /* LoginViewController.h */,
-				ABA710C31DF7376000FA1F89 /* LoginViewController.m */,
+				ABAACFA61DFA4D4200F9F9BB /* LoginViewController.h */,
+				ABAACFA71DFA4D4200F9F9BB /* LoginViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -334,7 +334,6 @@
 				AB4105C61DF6B02200BF1B6A /* main.m in Sources */,
 				ABAACFA51DFA17EF00F9F9BB /* CreateProfileViewController.m in Sources */,
 				ABA710D51DF7393E00FA1F89 /* EditProfileViewController.m in Sources */,
-				ABA710C41DF7376000FA1F89 /* LoginViewController.m in Sources */,
 				ABA710DE1DF7398400FA1F89 /* SortMatchesViewController.m in Sources */,
 				ABA710F01DF7433600FA1F89 /* MatchCell.m in Sources */,
 				ABA710DB1DF7397B00FA1F89 /* MatchDetailsViewController.m in Sources */,
@@ -345,6 +344,7 @@
 				ABA710D81DF7397100FA1F89 /* MatchesViewController.m in Sources */,
 				ABA710E71DF739D100FA1F89 /* MessageDetailsViewController.m in Sources */,
 				ABA710E41DF739AC00FA1F89 /* SortMessagesViewController.m in Sources */,
+				ABAACFA81DFA4D4200F9F9BB /* LoginViewController.m in Sources */,
 				ABA710F31DF7590A00FA1F89 /* MessageCell.m in Sources */,
 				ABA710EA1DF741C100FA1F89 /* SearchResultCell.m in Sources */,
 				ABA710C81DF737B500FA1F89 /* ResultsViewController.m in Sources */,
