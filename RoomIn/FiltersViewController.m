@@ -7,8 +7,9 @@
 //
 
 #import "FiltersViewController.h"
-
+#import "RoomInUser.h"
 @interface FiltersViewController ()
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 

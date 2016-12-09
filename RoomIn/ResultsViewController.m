@@ -7,10 +7,12 @@
 //
 
 #import "ResultsViewController.h"
+#import "RoomInUser.h"
 
 @interface ResultsViewController ()
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 

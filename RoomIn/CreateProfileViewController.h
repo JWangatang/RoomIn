@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoomInUser.h"
 
 @interface CreateProfileViewController : UIViewController
+@property (strong, nonatomic) RoomInUser * currentUser;
+
 
 @end

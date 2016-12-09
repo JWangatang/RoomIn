@@ -37,7 +37,8 @@ typedef void (^AuthErrorBlock)(NSError *);
         By default, sessions are saved in the keychain.
  @param permissions  NSArray of permissions strings.  For valid values see LISDKPermission.h
  @param showGoToAppStoreDialog YES if you want an alert to prompt the user to go to the App Store if the LinkedIn App is not installed. If NO, no alert will be shown and the user will be taken to the App Store directly.
- */
+ **/
+
 + (void)createSessionWithAuth:(NSArray *)permissions state:(NSString *)state showGoToAppStoreDialog:(BOOL)showDialog successBlock:(AuthSuccessBlock)successBlock errorBlock:(AuthErrorBlock)erroBlock;
 
 + (void)createSessionWithAccessToken:(LISDKAccessToken *)accessToken;

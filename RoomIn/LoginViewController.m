@@ -9,11 +9,16 @@
 #import "LoginViewController.h"
 #import "RoomInUser.h"
 #import <linkedin-sdk/LISDK.h>
+#import "CreateProfileViewController.h"
+#import "ResultsViewController.h"
+
 @import Firebase;
 
 @interface LoginViewController ()
 
 @property (strong, nonatomic) FIRDatabaseReference *ref;
+@property (strong, nonatomic) __block RoomInUser * currentUser;
+@property BOOL userIsRegistered;
 
 @end
 
@@ -50,17 +55,6 @@
      showGoToAppStoreDialog:YES
      successBlock:^(NSString *returnState) {
          NSLog(@"%s","success called!");
-         
-         
-         
-         
-         
-         
-//         [[FIRAuth auth] signInWithCustomToken:customToken
-//                                    completion:^(FIRUser *_Nullable user,
-//                                                 NSError *_Nullable error) {
-//                                        // ...
-//                                    }];
          
          if ([LISDKSessionManager hasValidSession]) {
              
@@ -122,19 +116,10 @@
                                  NSLog(@"ID NUMBER: %@", idNumber);
                                  
                                  //Set Current User
-                                 RoomInUser* currentUser = [[RoomInUser alloc] initWithFirstName:firstname lastName:lastname company:company industry:industry summary:summary headline:headline profileURL:profileURL pictureURL:pictureURL andIdNumber:idNumber];
+                                 _currentUser = [[RoomInUser alloc] initWithFirstName:firstname lastName:lastname company:company industry:industry summary:summary headline:headline profileURL:profileURL pictureURL:pictureURL andIdNumber:idNumber];
                                  
-                                 NSLog(@"CURRENT USER: %@", [currentUser description]);
-                                 NSLog(@"CURRENT USER ID NUMBER: %@", currentUser.idNumber);
-                                 
-                                 [[[self.ref child:@"Users"] child:currentUser.idNumber] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-                                     // Get user value
-                                     [self performSegueWithIdentifier:@"Home Segue" sender:self];
-                                     
-                                 } withCancelBlock:^(NSError * _Nonnull error) {
-                                     NSLog(@"LALALA%@", [error debugDescription]);
-                                     [self performSegueWithIdentifier:@"Create Profile Segue" sender:self];
-                                 }];
+                                 [self checkIfUserIsRegistered];
+
                              } error:^(LISDKAPIError *apiError) {
                                  NSLog(@"%@", [apiError debugDescription]);
                              }];
@@ -151,44 +136,40 @@
                  NSLog(@"%@", [apiError debugDescription]);
              }];
         }
-         /*
-          
-          //Writing
-          [[[[_ref child:@"users"] child:@"userID"] child:@"username"] setValue:@"usernameValue"];
-          
-          //Reading
-          [[[self.ref child:@"users"] child:@"userID"] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
-          // Get user value
-          snapshot.value[@"username"];
-          
-          // ...
-          } withCancelBlock:^(NSError * _Nonnull error) {
-          NSLog(@"%@", error.localizedDescription);
-          }];
-          */
-         
-         
      }
      errorBlock:^(NSError *error) {
          NSLog(@"%s","error called!");
      }];
-    
-    
-
-    
 }
 
-- (void) checkIfUserExists {
-
-}
-
-- (IBAction) registerClicked:(id)sender {
-    
+- (void) checkIfUserIsRegistered {
+    [[[self.ref child:@"Users"] child:_currentUser.idNumber] observeSingleEventOfType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+        // Get user value
+        if([snapshot exists]){
+            self.userIsRegistered = YES;
+            [self performSegueWithIdentifier:@"Home Segue" sender:self];
+        } else {
+            self.userIsRegistered = NO;
+            [self performSegueWithIdentifier:@"Create Profile Segue" sender:self];
+        }
+        
+    } withCancelBlock:^(NSError * _Nonnull error) {
+        NSLog(@"%@", [error debugDescription]);
+    }];
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if(self.userIsRegistered) {
+        ResultsViewController *dest = [segue destinationViewController];
+        dest.currentUser = _currentUser;
+        
+    } else {
+        CreateProfileViewController *dest = [segue destinationViewController];
+        dest.currentUser = _currentUser;
+    }
     
+    [self dismissViewControllerAnimated:YES completion:nil];
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }

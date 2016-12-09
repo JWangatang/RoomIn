@@ -7,9 +7,9 @@
 //
 
 #import "CreateProfileViewController.h"
+#import "RoomInUser.h"
 
 @interface CreateProfileViewController ()
-
 @end
 
 @implementation CreateProfileViewController

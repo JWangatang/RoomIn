@@ -7,9 +7,11 @@
 //
 
 #import "MessagesViewController.h"
+#import "RoomInUser.h"
 
 @interface MessagesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 

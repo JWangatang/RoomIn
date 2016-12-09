@@ -7,9 +7,11 @@
 //
 
 #import "MatchesViewController.h"
+#import "RoomInUser.h"
 
 @interface MatchesViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 

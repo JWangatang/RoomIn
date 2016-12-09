@@ -7,10 +7,12 @@
 //
 
 #import "MessageDetailsViewController.h"
+#import "RoomInUser.h"
 
 @interface MessageDetailsViewController ()
 @property (strong, nonatomic) IBOutlet UITextField *chatTF;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 

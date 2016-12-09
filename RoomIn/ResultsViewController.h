@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RoomInUser.h"
 
 @interface ResultsViewController : UIViewController
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end

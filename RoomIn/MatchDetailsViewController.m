@@ -7,8 +7,10 @@
 //
 
 #import "MatchDetailsViewController.h"
+#import "RoomInUser.h"
 
 @interface MatchDetailsViewController ()
+@property (strong, nonatomic) RoomInUser * currentUser;
 
 @end
 
