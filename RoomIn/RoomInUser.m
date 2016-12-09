@@ -14,10 +14,12 @@
                           lastName: (NSString*) ln
                            company: (NSString*) c
                           industry: (NSString*) indus
+                          location: (NSString*) loc
                            summary: (NSString*) sum
                           headline: (NSString*) hl
                         profileURL: (NSString*) prof
                         pictureURL: (NSString*) pic
+                         positions: (NSDictionary*) pos
                        andIdNumber: (NSString*) idnum {
     self = [super init];
     if(self) {
@@ -25,11 +27,13 @@
         _lastname = ln;
         _company = c;
         _industry = indus;
+        _location = loc;
         _summary = sum;
         _headline = hl;
         _profileURL = prof;
         _pictureURL = pic;
         _profileURL = prof;
+        _positions = pos;
         _idNumber = idnum;
         
     }

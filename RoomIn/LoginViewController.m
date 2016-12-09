@@ -19,6 +19,7 @@
 @property (strong, nonatomic) FIRDatabaseReference *ref;
 @property (strong, nonatomic) __block RoomInUser * currentUser;
 @property BOOL userIsRegistered;
+@property (strong, nonatomic) __block UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -43,9 +44,13 @@
     return dict;
 }
 
+- (void) animate {
+    [_activityIndicator startAnimating];
+}
+
 - (IBAction) signInClicked:(id)sender {
     __block NSString * firstname = nil, *lastname = nil , *company = nil,
-    *industry = nil, *summary = nil, *headline = nil,
+    *industry = nil, *location = nil, *summary = nil, *headline = nil,
     *profileURL = nil, *pictureURL = nil, *idNumber = nil;
     __block NSDictionary* positions = nil;
     
@@ -55,6 +60,12 @@
      showGoToAppStoreDialog:YES
      successBlock:^(NSString *returnState) {
          NSLog(@"%s","success called!");
+         
+         _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+         
+         [NSThread detachNewThreadSelector:@selector(animate) toTarget:self withObject:nil];
+
+         [_activityIndicator startAnimating];
          
          if ([LISDKSessionManager hasValidSession]) {
              
@@ -104,6 +115,8 @@
                          
                          [apiHelper getRequest:url5 success:^(LISDKAPIResponse *response) {
                              positions = [self parseJsonString:response.data];
+                             company = positions[@"positions"][@"values"][0][@"company"][@"name"];
+                             
                              
                              //6th API call getting summary
                              NSString *url6 = [NSString stringWithFormat:
@@ -113,13 +126,27 @@
                                  NSDictionary* summaryDict = [self parseJsonString:response.data];
                                  summary = [NSString stringWithString: summaryDict[@"summary"]];
                                  
-                                 NSLog(@"ID NUMBER: %@", idNumber);
+                                 NSString *url6 = [NSString stringWithFormat:
+                                                   @"https://api.linkedin.com/v1/people/~:(location)?format=json"];
                                  
-                                 //Set Current User
-                                 _currentUser = [[RoomInUser alloc] initWithFirstName:firstname lastName:lastname company:company industry:industry summary:summary headline:headline profileURL:profileURL pictureURL:pictureURL andIdNumber:idNumber];
-                                 
-                                 [self checkIfUserIsRegistered];
+                                 [apiHelper getRequest:url6 success:^(LISDKAPIResponse *response) {
+                                     NSDictionary* locationDict = [self parseJsonString:response.data];
+                                     location = [NSString stringWithString: locationDict[@"location"][@"name"]];
+                                     
+                                     NSLog (@"%@", locationDict[@"location"][@"name"]);
+                                     
+                                     //Set Current User
+                                     _currentUser = [[RoomInUser alloc] initWithFirstName:firstname lastName:lastname company:company industry:industry location: location summary:summary headline:headline profileURL:profileURL pictureURL:pictureURL positions:positions andIdNumber:idNumber];
+                                     
+                                     [self checkIfUserIsRegistered];
 
+                                     
+                                     
+                                 } error:^(LISDKAPIError *apiError) {
+                                     NSLog(@"%@", [apiError debugDescription]);
+                                 }];
+                                                                  
+                                 
                              } error:^(LISDKAPIError *apiError) {
                                  NSLog(@"%@", [apiError debugDescription]);
                              }];
@@ -147,6 +174,8 @@
         // Get user value
         if([snapshot exists]){
             self.userIsRegistered = YES;
+            [_activityIndicator stopAnimating];
+
             [self performSegueWithIdentifier:@"Home Segue" sender:self];
         } else {
             self.userIsRegistered = NO;
@@ -161,7 +190,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if(self.userIsRegistered) {
-        ResultsViewController *dest = [segue destinationViewController];
+        ResultsViewController *dest = (ResultsViewController*)[segue destinationViewController].presentedViewController;
         dest.currentUser = _currentUser;
         
     } else {

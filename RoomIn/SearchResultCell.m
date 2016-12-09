@@ -13,6 +13,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    [_matchSwitch setOn: NO];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "RoomInUser.h"
 
-@interface ResultsViewController : UIViewController
+@interface ResultsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate>
+
 @property (strong, nonatomic) RoomInUser * currentUser;
 
 @end

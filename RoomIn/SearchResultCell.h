@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchResultCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *fullName;
+@property (strong, nonatomic) IBOutlet UILabel *industryAndCompany;
+@property (strong, nonatomic) IBOutlet UISwitch *matchSwitch;
 
 @end

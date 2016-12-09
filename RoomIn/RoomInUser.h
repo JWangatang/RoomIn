@@ -11,6 +11,7 @@
 @interface RoomInUser : NSObject
 @property (strong, nonatomic) NSString* firstname, *lastname,
                                         *company, *industry,
+                                        *location,
                                         *summary, *headline,
                                         *profileURL, *pictureURL,
                                         *idNumber;
@@ -22,10 +23,12 @@
                           lastName: (NSString*) ln
                            company: (NSString*) c
                           industry: (NSString*) indus
+                          location: (NSString*) loc
                            summary: (NSString*) sum
                           headline: (NSString*) hl
                         profileURL: (NSString*) prof
                         pictureURL: (NSString*) pic
+                         positions: (NSDictionary*) pos
                        andIdNumber: (NSString*) idnum;
 
 @end
